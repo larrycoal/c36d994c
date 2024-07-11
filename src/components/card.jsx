@@ -16,7 +16,7 @@ const Card = ({ callDetails, archiveCall }) => {
                 }
                 <p>
                     <span>
-                        +33 687 2344
+                        {"+" + callDetails.from}33 687 2344
                     </span>
                     <span>
                         duration:{callDetails.duration}s
