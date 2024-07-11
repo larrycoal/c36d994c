@@ -24,6 +24,12 @@
 
     .archive-wrapper {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;
+        align-items: center;
+        font-size: 12px;
 
         svg {
             cursor: pointer !important;
@@ -37,7 +43,22 @@
         border-radius: 70%;
         color: white;
         font-size: 12px;
-        top: -8px;
+        top: -2px;
         right: -5px;
+    }
+
+    .voicemail-icon {
+        svg {
+            cursor: pointer !important;
+        }
+    }
+
+    .footer-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 12px;
+        height: 100%;
     }
 }

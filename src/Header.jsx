@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { IoArchiveOutline } from "react-icons/io5";
 import { RiInboxUnarchiveLine } from "react-icons/ri";
-import {Recent_Page,Missed_Page,Archived_Page} from "./constant"
+import {Recent_Page,Missed_Page,Archived_Page, Voicemail_Page} from "./constant"
 const Header = ({ handleArchiveAndUnArchiveCalls, page, changePage }) => {
 
   return (
@@ -26,7 +26,9 @@ const Header = ({ handleArchiveAndUnArchiveCalls, page, changePage }) => {
         <button className={page === Missed_Page ? 'active' : ""} onClick={() => changePage("missed")}>Missed</button>
       </div>
       <div className='archive-btn'>
-        <button onClick={handleArchiveAndUnArchiveCalls}>
+       { 
+       page !== Missed_Page && page !== Voicemail_Page &&
+       <button onClick={handleArchiveAndUnArchiveCalls}>
           {
             page === Recent_Page && <IoArchiveOutline />
           }
@@ -35,8 +37,7 @@ const Header = ({ handleArchiveAndUnArchiveCalls, page, changePage }) => {
           }
           <span>{page === Recent_Page && "Archive all calls"}</span>
           <span>{page === Archived_Page && "Unarchive all calls"}</span>
-          <span>{page === Missed_Page && "Archive all calls"}</span>
-        </button>
+        </button>}
       </div>
     </header>
   );

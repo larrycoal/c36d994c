@@ -5,7 +5,7 @@ import { HiOutlinePhoneMissedCall } from "react-icons/hi";
 import { RiInboxUnarchiveLine } from "react-icons/ri";
 
 const Card = ({ callDetails, archiveCall }) => {
-
+    const callTime = new Date(callDetails.created_at).toLocaleTimeString('en-US')
     return (
         <div className='card-wrapper'>
             <div className='card-container'>
@@ -23,7 +23,7 @@ const Card = ({ callDetails, archiveCall }) => {
                     </span>
                 </p>
                 <span>
-                    {new Date(callDetails.created_at).toLocaleTimeString('en-US')}
+                    {callTime.substring(0, 4) + callTime.substring(8)}
                 </span>
             </div>
             <div className='card-btn' style={callDetails.is_archived ? { background: "#2ac520" } : { background: "red" }} onClick={() => archiveCall(callDetails.id, callDetails.is_archived)}>

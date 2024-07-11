@@ -3,7 +3,7 @@ import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import Card from './components/card.jsx';
 import Loader from './components/loader.jsx';
-import { Archived_Page, Missed_Page, Recent_Page } from './constant.js';
+import { Archived_Page, Missed_Page, Recent_Page, Voicemail_Page } from './constant.js';
 
 
 const App = () => {
@@ -51,11 +51,12 @@ const App = () => {
     return calls?.length > 0 ?
       calls.map((call) => <Card key={call.id} callDetails={call} archiveCall={handleArchiveAndUnarchiveCall} />)
       : <div className='empty-log'>
-        {page === Recent_Page ? <p>Your call log is empty</p> : 
+        {page === Recent_Page ? <p>Your call log is empty</p> :
           page === Archived_Page ? <p>Archive is empty</p> :
-            <p>No missed calls</p>
+            page === Missed_Page ? <p>No missed calls</p> :
+              page === Voicemail_Page ? <p>No Voicemail</p> : null
         }
-        </div>
+      </div>
 
   }
   const handleArchiveAndUnArchiveCalls = () => {
@@ -69,13 +70,14 @@ const App = () => {
       <Header handleArchiveAndUnArchiveCalls={handleArchiveAndUnArchiveCalls} page={page} changePage={setPage} />
       <div className="container-view">
         {
-          loading && <Loader/>
+          loading && <Loader />
         }
         {
           page === Recent_Page ? displayCalls(allCalls?.filter(call => !call.is_archived)) :
-          page === Archived_Page ? displayCalls(allCalls?.filter(call => call.is_archived)) :
-          page === Missed_Page ? displayCalls(allCalls?.filter(call => call.call_type === "missed")) :
-          <div>Call log is empty</div>
+            page === Archived_Page ? displayCalls(allCalls?.filter(call => call.is_archived)) :
+              page === Missed_Page ? displayCalls(allCalls?.filter(call => call.call_type === "missed")) :
+                page === Voicemail_Page ? displayCalls(allCalls?.filter(call => call.call_type === "voicemail")) :
+                  <div>Call log is empty</div>
         }
       </div>
       <Footer archiveCount={allCalls?.filter((call) => call.is_archived)} changePage={setPage} page={page} />
