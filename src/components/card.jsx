@@ -6,6 +6,7 @@ import { RiInboxUnarchiveLine } from "react-icons/ri";
 
 const Card = ({ callDetails, archiveCall }) => {
     const callTime = new Date(callDetails.created_at).toLocaleTimeString('en-US')
+    const callDuration = Math.floor(callDetails.duration / 60) + "m" + callDetails.duration % 60
     return (
         <div className='card-wrapper'>
             <div className='card-container'>
@@ -19,7 +20,7 @@ const Card = ({ callDetails, archiveCall }) => {
                         {"+" + callDetails.from}33 687 2344
                     </span>
                     <span>
-                        duration:{callDetails.duration}s
+                        duration:{callDuration}s
                     </span>
                 </p>
                 <span>
